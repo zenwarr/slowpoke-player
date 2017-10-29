@@ -1,0 +1,22 @@
+.panel-btn {
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 0;
+}
+
+.panel-btn__svg {
+  display: block;
+}
+
+.panel-btn__path {
+  fill: black;
+}
+
+.panel-btn:hover .panel-btn__path {
+  color: red;
+}
