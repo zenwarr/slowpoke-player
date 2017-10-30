@@ -2,7 +2,9 @@
   padding: 0;
   width: var(--panel-btn-size);
   height: var(--panel-btn-size);
-  line-height: var(--panel-btn-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   -webkit-appearance: none;
   appearance: none;
   background: none;
