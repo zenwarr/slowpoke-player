@@ -6,10 +6,7 @@ let mainWin: Electron.BrowserWindow|null = null;
 function createWindow() {
   mainWin = new BrowserWindow({
     width: 800,
-    height: 600,
-    webPreferences: {
-      plugins: true
-    }
+    height: 600
   });
 
   const rPath = path.join(__dirname, '../client/index.html');

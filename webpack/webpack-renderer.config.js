@@ -3,62 +3,25 @@ const webpackCommon = require('./common');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const child_process = require('child_process');
+const process = require('process');
 
 module.exports = [
-  {
-    /*
-     * Server
-     */
-
-    entry: './src/server/index.ts',
-
-    target: 'electron',
-
-    output: {
-      filename: "bundle.js",
-      path: path.join(__dirname, '/../dist/server'),
-      libraryTarget: 'commonjs2'
-    },
-
-    devtool: 'source-map',
-
-    externals: [webpackCommon.buildExternals()],
-
-    resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.json', '.webpack.js']
-    },
-
-    node: {
-      __dirname: false,
-      __filename: false
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          loader: 'ts-loader'
-        },
-        {
-          enforce: 'pre',
-          test: /\.js$/,
-          loader: 'source-map-loader'
-        }
-      ]
-    }
-  },
-
   {
     /**
      * Client
      */
 
-    entry: './src/client/index.tsx',
+    entry: [
+      'react-hot-loader/patch',
+      './src/client/index.tsx'
+    ],
 
     output: {
       filename: "bundle.js",
       path: path.join(__dirname, '/../dist/client'),
-      libraryTarget: "commonjs2"
+      libraryTarget: "commonjs2",
+      publicPath: "http://localhost:8080/dist/client"
     },
 
     devtool: 'source-map',
@@ -97,6 +60,30 @@ module.exports = [
       title: 'electron-mpv'
     }), new ExtractTextPlugin('style.css', {
       allChunks: true
-    })]
+    }), new webpack.HotModuleReplacementPlugin({
+
+    })],
+
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      publicPath: 'http://localhost:8080/dist/client',
+      port: 8080,
+      inline: true,
+      hot: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      watchOptions: {
+        aggregateTimeout: 1000,
+        poll: 100,
+        ignored: /node_modules/
+      },
+      before() {
+        console.log('Starting main processs...');
+        child_process.spawn(
+            'npm', [ 'run', 'start' ], { shell: true, stdio: 'inherit' }
+        ).on('error', code => process.exit(code)).on('error', err => console.error(err));
+      }
+    }
   }
 ];

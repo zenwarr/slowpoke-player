@@ -12,7 +12,7 @@ interface PanelButtonProps {
 export class PanelButton extends React.Component<PanelButtonProps> {
   render() {
     let cn = "panel-btn " + (this.props.className ? this.props.className : '');
-    return <button className={cn} type={this.props.type} onClick={this.props.onClick}>
+    return <button className={cn} type={this.props.type} onClick={this.props.onClick} tabIndex={-1}>
       {this.props.children}
     </button>
   }
