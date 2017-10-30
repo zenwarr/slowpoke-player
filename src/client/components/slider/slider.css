@@ -1,0 +1,46 @@
+.slider {
+  padding: 8px 0;
+  display: block;
+}
+
+.slider__input {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -99999px;
+}
+
+.slider__track {
+  height: 8px;
+  border-radius: 4px;
+  background: lightgray;
+  position: relative;
+}
+
+.slider__elapsed {
+  position: relative;
+  height: 100%;
+  border-radius: 4px;
+  background: green;
+}
+
+.slider--disabled .slider__elapsed {
+  background: lightgray;
+}
+
+.slider__handle {
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  right: 0;
+  margin-right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: green;
+}
+
+.slider--disabled .slider__handle {
+  background: lightgray;
+}

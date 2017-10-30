@@ -1,0 +1,13 @@
+.volume-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.volume-control__mute {
+  margin-right: 5px;
+}
+
+.volume-control__slider {
+  min-width: 100px;
+}

@@ -8,7 +8,7 @@ interface PlayerProps {
   s: PlayerState;
 }
 
-const PROPS_TO_OBSERVE = [ 'pause', 'filename', 'width', 'height' ];
+const PROPS_TO_OBSERVE = [ 'pause', 'filename', 'width', 'height', 'percent-pos', 'mute', 'volume' ];
 
 @observer
 export class Player extends React.Component<PlayerProps> {
@@ -51,8 +51,9 @@ export class Player extends React.Component<PlayerProps> {
       });
       mpv.create();
       for (let prop of PROPS_TO_OBSERVE) {
+        let normalized = prop.replace('-', '_');
         mpv.observeProperty(prop, value => {
-          (this.props.s as any)[prop] = value;
+          (this.props.s as any)[normalized] = value;
         });
       }
       this.props.s.mpv = mpv;

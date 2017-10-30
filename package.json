@@ -9,6 +9,8 @@
     "url": "https://github.com/zenwarr/electron-mpv-player"
   },
   "dependencies": {
+    "@types/core-decorators": "^0.10.32",
+    "core-decorators": "^0.20.0",
     "electron": "^1.7.8",
     "libmpvjs": "github:zenwarr/libmpvjs",
     "mobx": "^3.3.1",
