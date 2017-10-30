@@ -16,7 +16,8 @@ export class VolumeControl extends React.Component<VolumeControlProps> {
     return <div className={"volume-control"}>
       <MuteButton extraClasses={"volume-control__mute"} s={this.props.s} onClick={this.onMuteButtonClick}/>
       <div className={"volume-control__slider"}>
-        <Slider percent={this.props.s.volume} onChange={this.onChange} disabled={this.props.s.mute}/>
+        <Slider percent={this.props.s.volume} onChange={this.onChange} enabled={!this.props.s.mute}
+            transition={true} />
       </div>
     </div>;
   }

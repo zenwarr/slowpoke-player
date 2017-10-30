@@ -1,4 +1,4 @@
-import {observable, action} from "mobx";
+import {observable, action, computed} from "mobx";
 import * as mpv from 'libmpvjs';
 
 export class PlayerState {
@@ -10,6 +10,10 @@ export class PlayerState {
   @observable percent_pos: number = 0;
   @observable mute: boolean = false;
   @observable volume: number = 0;
+
+  @computed get fileLoaded(): boolean {
+    return !!this.filename;
+  }
 
   @action loadFile(filename: string): void {
     if (this.mpv) {

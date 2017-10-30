@@ -9,5 +9,5 @@
 }
 
 .volume-control__slider {
-  min-width: 100px;
+  min-width: var(--volume-slider-width);
 }

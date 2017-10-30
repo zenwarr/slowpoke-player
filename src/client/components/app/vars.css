@@ -1,0 +1,19 @@
+body {
+  --color-primary: #4296d2;
+  --color-gray: #cccccc;
+  --color-disabled-primary: #7d7d7d;
+  --color-disabled-gray: #d4d4d4;
+  --color-panel-icon: #3e3e3e;
+
+  --def-trans-speed: 0.1s;
+
+  --panel-btn-size: 36px;
+
+  --slider-thickness: 8px;
+  --slider-handle-size: 16px;
+  --slider-vertical-padding: 8px;
+  --slider-roundness: 4px;
+  --slider-handle-roundness: 50%;
+
+  --volume-slider-width: 100px;
+}

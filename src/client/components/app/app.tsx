@@ -6,6 +6,7 @@ import {Player} from "../player/player";
 import {PlayerPanel} from "../panel/panel";
 import DevTools from "mobx-react-devtools";
 require('./app.css');
+require('./vars.css');
 
 interface AppProps {
   s: AppState;

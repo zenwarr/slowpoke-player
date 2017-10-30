@@ -27,8 +27,8 @@ body {
 }
 
 .app__panel {
-  height: 36px;
-  min-height: 36px;
+  height: var(--panel-btn-size);
+  min-height: var(--panel-btn-size);
   flex-grow: 0;
   background: white;
   position: relative;

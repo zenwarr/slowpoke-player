@@ -1,22 +1,18 @@
 .panel-btn {
   padding: 0;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: var(--panel-btn-size);
+  height: var(--panel-btn-size);
+  line-height: var(--panel-btn-size);
   -webkit-appearance: none;
   appearance: none;
   background: none;
   border: 0;
 }
 
-.panel-btn__svg {
-  display: block;
+.panel-btn .i__path {
+  fill: var(--color-panel-icon);
 }
 
-.panel-btn__path {
-  fill: black;
-}
-
-.panel-btn:hover .panel-btn__path {
-  color: red;
+.panel-btn:hover .i__path {
+  fill: var(--color-primary);
 }

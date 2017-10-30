@@ -3,7 +3,6 @@ import {PlayerState} from "../../player-store";
 import {observer} from "mobx-react";
 import {autobind} from "core-decorators";
 import {Slider} from "../slider/slider";
-require('./progress.css');
 
 export interface PlayerProgressProps {
   extraClasses?: string;
@@ -13,7 +12,7 @@ export interface PlayerProgressProps {
 @observer
 export class PlayerProgress extends React.Component<PlayerProgressProps> {
   render() {
-    return <Slider extraClasses={"slider--progress"} percent={this.props.s.percent_pos} onChange={this.onChange} />
+    return <Slider extraClasses={"slider--progress"} percent={this.props.s.percent_pos} onChange={this.onChange} enabled={this.props.s.fileLoaded} />
   }
 
   @autobind

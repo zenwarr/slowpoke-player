@@ -6,14 +6,14 @@ import {cn} from "../utils";
 require('./panel-button.css');
 
 interface PanelButtonProps {
-  type?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   extraClasses?: string;
+  enabled?: boolean;
 }
 
 export class PanelButton extends React.Component<PanelButtonProps> {
   render() {
-    return <button className={cn('panel-btn', this.props.extraClasses)} type={this.props.type} onClick={this.props.onClick} tabIndex={-1}>
+    return <button className={cn('panel-btn', this.props.extraClasses)} onClick={this.props.onClick} tabIndex={-1} disabled={this.props.enabled === false}>
       {this.props.children}
     </button>
   }
@@ -26,7 +26,8 @@ interface PlayButtonProps extends PanelButtonProps {
 @observer
 export class PlayButton extends React.Component<PlayButtonProps> {
   render() {
-    return <PanelButton extraClasses={"panel-btn--play"} type={this.props.type} onClick={this.props.onClick}>
+    return <PanelButton extraClasses={"panel-btn--play"} onClick={this.props.onClick}
+                        enabled={this.props.s.fileLoaded}>
       <PlayPauseIcon s={this.props.s}/>
     </PanelButton>;
   }
@@ -34,7 +35,8 @@ export class PlayButton extends React.Component<PlayButtonProps> {
 
 export class OpenButton extends React.Component<PanelButtonProps> {
   render() {
-    return <PanelButton extraClasses={"panel-btn--open"} type={this.props.type} onClick={this.props.onClick}>
+    return <PanelButton extraClasses={"panel-btn--open"} onClick={this.props.onClick}
+                        enabled={this.props.enabled}>
       <OpenIcon />
     </PanelButton>;
   }
@@ -47,7 +49,8 @@ export interface MuteButtonProps extends PanelButtonProps {
 @observer
 export class MuteButton extends React.Component<MuteButtonProps> {
   render() {
-    return <PanelButton extraClasses={"panel-btn--mute"} type={this.props.type} onClick={this.props.onClick}>
+    return <PanelButton extraClasses={"panel-btn--mute"} onClick={this.props.onClick}
+                        enabled={this.props.enabled}>
       <MuteIcon s={this.props.s} />
     </PanelButton>;
   }
