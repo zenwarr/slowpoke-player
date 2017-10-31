@@ -9,7 +9,6 @@
     "url": "https://github.com/zenwarr/electron-mpv-player"
   },
   "dependencies": {
-    "@types/core-decorators": "^0.10.32",
     "core-decorators": "^0.20.0",
     "electron": "^1.7.8",
     "libmpvjs": "github:zenwarr/libmpvjs",
@@ -18,8 +17,10 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@types/core-decorators": "^0.10.32",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
+    "@types/react-hot-loader": "^3.0.5",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",

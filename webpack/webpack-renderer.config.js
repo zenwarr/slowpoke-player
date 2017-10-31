@@ -14,6 +14,7 @@ module.exports = [
 
     entry: [
       'react-hot-loader/patch',
+      'webpack/hot/only-dev-server',
       './src/client/index.tsx'
     ],
 
@@ -62,7 +63,7 @@ module.exports = [
       allChunks: true
     }), new webpack.HotModuleReplacementPlugin({
 
-    })],
+    }), new webpack.NamedModulesPlugin()],
 
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
