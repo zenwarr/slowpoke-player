@@ -12,7 +12,10 @@ export interface PlayerProgressProps {
 @observer
 export class PlayerProgress extends React.Component<PlayerProgressProps> {
   render() {
-    return <Slider extraClasses={"slider--progress"} percent={this.props.s.percent_pos} onChange={this.onChange} enabled={this.props.s.fileLoaded} />
+    return <Slider extraClasses={"slider--progress"}
+                   percent={this.props.s.fileLoaded ? this.props.s.percent_pos : 0}
+                   onChange={this.onChange}
+                   enabled={this.props.s.fileLoaded} />
   }
 
   @autobind

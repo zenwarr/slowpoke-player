@@ -12,30 +12,35 @@ export interface SliderProps {
 }
 
 export interface SliderState {
-  dragStartPos: number;
   dragging: boolean;
-  overridePercent: number;
+  value: number;
 }
 
 export class Slider extends React.Component<SliderProps, SliderState> {
   constructor(props: SliderProps) {
     super(props);
     this.state = {
-      dragStartPos: -1,
       dragging: false,
-      overridePercent: -1
+      value: props.percent
     };
+  }
+
+  componentWillReceiveProps(props: SliderProps): void {
+    if (props.percent !== this.state.value) {
+      this.setState({
+        value: props.percent
+      });
+    }
   }
 
   render() {
     let classes = cn('slider', this.props.extraClasses,
         this.props.enabled === false ? 'slider--disabled' : null,
         this.props.transition && !this.state.dragging ? 'slider--transition' : null);
-    let percent = this.state.overridePercent >= 0 ? this.state.overridePercent : this.props.percent;
 
     return <label className={classes} onClick={this.onClick}>
       <div className={"slider__track"} ref={track => this.track = track}>
-        <div className={"slider__elapsed"} style={{width: percent + '%'}}>
+        <div className={"slider__elapsed"} style={{width: this.state.value + '%'}}>
           <span className={"slider__handle"} onMouseDown={this.onMouseDown} onDragStart={this.onDragStart} />
         </div>
       </div>
@@ -83,7 +88,7 @@ export class Slider extends React.Component<SliderProps, SliderState> {
   onMouseMove(e: React.MouseEvent<HTMLElement>) {
     if (this.props.enabled !== false && this.state.dragging && this.track) {
       this.setState({
-        overridePercent: Slider.percentFromClientX(e.clientX, this.track)
+        value: Slider.percentFromClientX(e.clientX, this.track)
       });
     }
   }
@@ -92,8 +97,7 @@ export class Slider extends React.Component<SliderProps, SliderState> {
     let percent = Slider.percentFromClientX(clientX, track);
     this.setState({
       dragging: true,
-      dragStartPos: clientX,
-      overridePercent: percent
+      value: percent
     });
 
     const mouseMoveHandler = this.onMouseMove.bind(this);
@@ -114,10 +118,9 @@ export class Slider extends React.Component<SliderProps, SliderState> {
 
   protected endHandleDrag(): void {
     this.setState({
-      dragging: false,
-      dragStartPos: -1
+      dragging: false
     });
-    this.setPercent(this.state.overridePercent);
+    this.setPercent(this.state.value);
   }
 
   /**
@@ -139,7 +142,7 @@ export class Slider extends React.Component<SliderProps, SliderState> {
 
   protected setPercent(value: number): void {
     this.setState({
-      overridePercent: value
+      value: value
     });
     if (this.props.enabled !== false && this.props.onChange) {
       this.props.onChange(value);
