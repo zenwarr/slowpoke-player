@@ -2,9 +2,10 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import {AppState} from "../../store";
 import { remote } from 'electron';
-import {OpenButton, PlayButton} from "../panel-button/panel-button";
+import {OpenButton, PanelButton, PlayButton} from "../panel-button/panel-button";
 import {PlayerProgress} from "../progress/progress";
 import {VolumeControl} from "../volume/volume";
+import {FullScreenIcon} from "../icons/icon";
 require('./panel.css');
 
 interface PlayerPanelProps {
@@ -23,6 +24,9 @@ export class PlayerPanel extends React.Component<PlayerPanelProps> {
       <div className={"player-panel__volume"}>
         <VolumeControl s={this.props.s.player} />
       </div>
+      <PanelButton onClick={this.toggleFullScreen.bind(this)}>
+        <FullScreenIcon />
+      </PanelButton>
     </div>
   }
 
@@ -38,5 +42,9 @@ export class PlayerPanel extends React.Component<PlayerPanelProps> {
 
   togglePause() {
     this.props.s.player.setPause(!this.props.s.player.pause);
+  }
+
+  toggleFullScreen() {
+    this.props.s.player.setFullScreen(!this.props.s.player.fullscreen);
   }
 }

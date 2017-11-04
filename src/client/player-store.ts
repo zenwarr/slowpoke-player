@@ -1,4 +1,5 @@
 import {observable, action, computed} from "mobx";
+import {remote} from 'electron';
 import * as mpv from 'libmpvjs';
 
 export class PlayerState {
@@ -10,6 +11,7 @@ export class PlayerState {
   @observable percent_pos: number = 0;
   @observable mute: boolean = false;
   @observable volume: number = 0;
+  @observable fullscreen: boolean = false;
 
   @computed get fileLoaded(): boolean {
     return !!this.filename;
@@ -43,5 +45,9 @@ export class PlayerState {
     if (this.mpv) {
       this.mpv.setProperty('volume', volume);
     }
+  }
+
+  @action setFullScreen(fullscreen: boolean): void {
+    remote.getCurrentWindow().setFullScreen(fullscreen);
   }
 }
