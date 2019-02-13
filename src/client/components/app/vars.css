@@ -3,7 +3,7 @@ body {
   --color-gray: #cccccc;
   --color-disabled-primary: #7d7d7d;
   --color-disabled-gray: #d4d4d4;
-  --color-panel-icon: #3e3e3e;
+  --color-panel-icon: #fff;
 
   --def-trans-speed: 0.1s;
 

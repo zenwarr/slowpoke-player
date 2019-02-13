@@ -11,7 +11,8 @@ function createWindow() {
 
   const rPath = path.join(__dirname, '../client/index.html');
   mainWin.loadURL(path.join('file://', rPath));
-  mainWin.webContents.openDevTools();
+  mainWin.setMenu(null);
+  //mainWin.webContents.openDevTools();
 
   mainWin.on('closed', () => {
     mainWin = null;

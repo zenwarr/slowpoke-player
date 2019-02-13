@@ -31,7 +31,7 @@ body {
   height: var(--panel-btn-size);
   min-height: var(--panel-btn-size);
   flex-grow: 0;
-  background: white;
+  background: black;
   position: relative;
   z-index: 10;
 }
