@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {observer} from "mobx-react";
-import {remote} from 'electron';
 import {AppState} from "../../store";
 import {Player} from "../player/player";
 import {PlayerPanel} from "../panel/panel";
@@ -18,7 +17,7 @@ export class App extends React.Component<AppProps> {
   render() {
     let classname = cn("app", this.props.s.player.fullscreen ? "app--fullscreen" : null);
 
-    return <div className={classname}>
+    return <div className={classname} onDoubleClick={this._handleDoubleClick.bind(this)}>
       <div className="app__player">
         <Player s={this.props.s.player} />
       </div>
@@ -29,5 +28,9 @@ export class App extends React.Component<AppProps> {
 
       <DevTools />
     </div>
+  }
+
+  _handleDoubleClick() {
+    this.props.s.player.setFullScreen(!this.props.s.player.fullscreen);
   }
 }

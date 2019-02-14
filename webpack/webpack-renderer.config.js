@@ -58,7 +58,7 @@ module.exports = [
     },
 
     plugins: [new HtmlWebpackPlugin({
-      title: 'electron-mpv'
+      title: 'Slowpoke Player'
     }), new ExtractTextPlugin('style.css', {
       allChunks: true
     }), new webpack.HotModuleReplacementPlugin({
